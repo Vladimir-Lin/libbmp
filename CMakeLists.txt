@@ -1,24 +1,23 @@
 cmake_minimum_required(VERSION 3.0)
-message("Compile UUIDs")
-PROJECT(UUIDs)
+PROJECT(libbmp)
 INCLUDE (CheckIncludeFile)
 
 include_directories(include)
 
-SET(HEADERS include/UUIDs.hpp)
-SET(CORES SRCs/UUIDs.cpp SRCs/nDestroyer.cpp)
+SET(HEADERS include/libbmp.hpp)
+SET(CORES src/bmp.cpp)
 
 if(BUILD_SHARED_LIBS)
-  ADD_LIBRARY(UUIDs SHARED ${CORES} ${HEADERS})
+  ADD_LIBRARY(libbmp SHARED ${CORES} ${HEADERS})
   add_definitions("-DBUILD_SHARED_LIBS=1")
-  add_definitions("-DEXPORT_UUIDS=1")
-  install(TARGETS UUIDs
+  add_definitions("-DEXPORT_LIBBMP=1")
+  install(TARGETS libbmp
     RUNTIME DESTINATION bin
     LIBRARY DESTINATION lib
     ARCHIVE DESTINATION lib)
-  install(FILES include/UUIDs.hpp DESTINATION include)
+  install(FILES include/libbmp.hpp DESTINATION include)
 else(BUILD_SHARED_LIBS)
-  ADD_LIBRARY(UUIDs STATIC ${CORES} ${HEADERS})
-  install(TARGETS UUIDs DESTINATION lib)
-  install(FILES include/UUIDs.hpp DESTINATION include)
+  ADD_LIBRARY(libbmp STATIC ${CORES} ${HEADERS})
+  install(TARGETS libbmp DESTINATION lib)
+  install(FILES include/libbmp.hpp DESTINATION include)
 endif(BUILD_SHARED_LIBS)
