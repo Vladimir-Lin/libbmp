@@ -28,17 +28,27 @@ class BmpObject
 {
   public:
 
-    explicit         BmpObject (void) ;
-    virtual         ~BmpObject (void) ;
+    explicit         BmpObject  (void) ;
+    virtual         ~BmpObject  (void) ;
 
-    virtual void     setData   (void * data,uint32_t size) ;
-    virtual void   * data      (void) ;
-    virtual uint32_t size      (void) ;
+    virtual void     setData    (void * data,uint32_t size) ;
+    virtual void   * data       (void) ;
+    virtual uint32_t size       (void) ;
 
   protected:
 
     void *   bmpData  ;
     uint32_t dataSize ;
+
+    int16_t          toInt16    (void * data) ;
+    uint16_t         toUint16   (void * data) ;
+    int32_t          toInt32    (void * data) ;
+    uint32_t         toUint32   (void * data) ;
+
+    void             fromInt16  (int16_t  v,void * data) ;
+    void             fromUint16 (uint16_t v,void * data) ;
+    void             fromInt32  (int32_t  v,void * data) ;
+    void             fromUint32 (uint32_t v,void * data) ;
 
   private:
 
